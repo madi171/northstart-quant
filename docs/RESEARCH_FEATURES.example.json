@@ -1,0 +1,22 @@
+[
+  {
+    "name": "fundamental.roe",
+    "category": "fundamental",
+    "symbol": "US.AAPL",
+    "observed_at": "2024-03-31T00:00:00Z",
+    "available_at": "2024-05-03T08:00:00Z",
+    "value": 0.15,
+    "source": "example-only-not-market-data",
+    "max_age_days": 180
+  },
+  {
+    "name": "macro.rate",
+    "category": "macro",
+    "symbol": "*",
+    "observed_at": "2024-05-01T18:00:00Z",
+    "available_at": "2024-05-01T18:05:00Z",
+    "value": 0.05,
+    "source": "example-only-not-market-data",
+    "max_age_days": 60
+  }
+]

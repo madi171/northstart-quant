@@ -1,0 +1,4 @@
+[
+  {"symbol":"CN.510300","name":"示例 ETF（导入前自行确认）","market":"CN","lot":100,"enabled":false,"tags":["格式示例"]},
+  {"symbol":"US.SPY","name":"示例美股 ETF（导入前自行确认）","market":"US","lot":1,"enabled":false,"tags":["格式示例"]}
+]

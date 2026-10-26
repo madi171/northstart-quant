@@ -1,0 +1,16 @@
+.env
+.env.models
+.env.*
+!.env.example
+!.env.models.example
+.venv*/
+venv/
+.playwright-cli/
+.release-backups/
+node_modules/
+dist/
+__pycache__/
+.pytest_cache/
+*.pyc
+data/*
+!data/.gitkeep

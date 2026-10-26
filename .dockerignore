@@ -1,0 +1,13 @@
+**
+!backend/
+!backend/**
+!frontend/
+!frontend/**
+!deploy/
+!deploy/**
+!package.json
+!tsconfig.json
+!vite.config.ts
+!index.html
+**/__pycache__
+**/*.pyc

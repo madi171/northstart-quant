@@ -1,0 +1,78 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: quant
+      POSTGRES_USER: quant
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD}
+    volumes:
+      - quant_db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U quant -d quant"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    restart: unless-stopped
+  api:
+    build:
+      context: .
+      dockerfile: deploy/Dockerfile.backend
+    env_file: &model-secrets
+      - path: .env.models
+        required: false
+    environment: &backend-env
+      POSTGRES_HOST: db
+      POSTGRES_PORT: "5432"
+      POSTGRES_DB: quant
+      POSTGRES_USER: quant
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD}
+      APP_PASSWORD: ${APP_PASSWORD:?set APP_PASSWORD}
+      SESSION_SECRET: ${SESSION_SECRET:?set SESSION_SECRET}
+      DATA_DIR: /data
+      MODEL_ALLOWED_BASE_URLS: ${MODEL_ALLOWED_BASE_URLS:-https://api.deepseek.com,https://newsai.woa.com/starcode-codex/v1}
+      MODEL_KEY_PRIMARY: ${MODEL_KEY_PRIMARY:-}
+      MODEL_KEY_SECONDARY: ${MODEL_KEY_SECONDARY:-}
+    volumes:
+      - quant_data:/data
+    depends_on:
+      db:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/api/health',timeout=2)"]
+      interval: 5s
+      timeout: 3s
+      retries: 30
+    security_opt:
+      - no-new-privileges:true
+    restart: unless-stopped
+  worker:
+    mem_limit: 1g
+    cpus: 1.0
+    pids_limit: 128
+    build:
+      context: .
+      dockerfile: deploy/Dockerfile.backend
+    command: ["python", "-m", "app.worker"]
+    env_file: *model-secrets
+    environment: *backend-env
+    volumes:
+      - quant_data:/data
+    depends_on:
+      api:
+        condition: service_healthy
+    security_opt:
+      - no-new-privileges:true
+    restart: unless-stopped
+  web:
+    build:
+      context: .
+      dockerfile: deploy/Dockerfile.frontend
+    ports:
+      - "0.0.0.0:${WEB_PORT:-8080}:80"
+    depends_on:
+      api:
+        condition: service_healthy
+    restart: unless-stopped
+volumes:
+  quant_db:
+  quant_data:

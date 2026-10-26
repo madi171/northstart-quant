@@ -1,0 +1,52 @@
+.signal-library { display: grid; gap: 18px; }
+.signal-heading { display: flex; align-items: end; justify-content: space-between; gap: 20px; padding: 15px 2px 8px; border-bottom: 1px solid var(--line); }
+.signal-heading h2 { font-size: clamp(21px, 2.4vw, 30px); line-height: 1.2; font-weight: 720; letter-spacing: -.04em; color: var(--foreground); }
+.signal-heading p { margin: 8px 0 0; color: var(--secondary); font-size: 12px; line-height: 1.7; max-width: 65ch; }
+.signal-heading-tools { display: flex; gap: 8px; flex-wrap: wrap; }
+.signal-heading-tools button { display: inline-flex; gap: 7px; align-items: center; white-space: nowrap; }
+.signal-layout { display: grid; grid-template-columns: minmax(305px, .76fr) minmax(0, 1.24fr); gap: 18px; align-items: start; }
+.signal-editor, .signal-records { overflow: hidden; }
+.signal-panel-title { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 19px 22px; border-bottom: 1px solid var(--line); }
+.signal-panel-title h3 { color: var(--foreground); font-size: 15px; font-weight: 700; }
+.signal-panel-title small { color: var(--muted); font-size: 11px; }
+.signal-form { padding: 20px 22px; }
+.signal-form fieldset { display: flex; flex-direction: column; gap: 13px; border: 0; margin: 0; padding: 0; min-width: 0; }
+.signal-form label, .signal-search { display: flex; flex-direction: column; gap: 6px; color: var(--secondary); font-size: 11px; font-weight: 600; min-width: 0; }
+.signal-form input, .signal-form select, .signal-form textarea, .signal-search input { width: 100%; }
+.signal-form label small, .signal-hint { margin: 0; color: var(--muted); font-size: 10px; font-weight: 400; line-height: 1.6; }
+.signal-form-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 11px; }
+.signal-feature-inputs { display: grid; gap: 12px; }
+.signal-switch, .signal-tabs { display: flex; gap: 4px; background: var(--surface-soft); border-radius: 9px; padding: 4px; }
+.signal-switch button, .signal-tabs button { flex: 1; border: 0; box-shadow: none; border-radius: 6px; font-size: 11px; background: transparent; color: var(--secondary); }
+.signal-switch button[aria-pressed=true], .signal-tabs button[aria-pressed=true] { background: var(--surface); color: var(--teal); box-shadow: 0 1px 5px rgba(30, 30, 60, .09); font-weight: 700; }
+.signal-form button.primary { margin-top: 5px; }
+.signal-inbox { padding: 18px 22px 22px; border-top: 1px solid var(--line); background: var(--surface-soft); }
+.signal-inbox h4 { display: flex; align-items: center; gap: 7px; font-size: 12px; color: var(--foreground); }
+.signal-inbox > p { color: var(--muted); font-size: 10px; margin: 6px 0 14px; }
+.signal-inbox > button { display: flex; flex-direction: column; gap: 5px; width: 100%; text-align: left; margin-top: 6px; border: 1px solid var(--line); background: var(--surface); border-radius: 8px; padding: 11px 12px; }
+.signal-inbox button strong { font-size: 11px; font-weight: 600; line-height: 1.5; color: var(--foreground); }
+.signal-inbox button small { color: var(--muted); font-size: 10px; }
+.signal-search { min-width: 170px; width: min(245px, 42%); }
+.signal-tabs { margin: 16px 22px 0; max-width: 360px; }
+.signal-record-list { margin-top: 10px; }
+.signal-record { border-top: 1px solid var(--line); padding: 19px 22px 20px; }
+.signal-record:first-child { border-top: 0; }
+.signal-record-top { display: flex; align-items: center; gap: 10px; color: var(--muted); font-size: 10px; }
+.signal-record-top button { margin-left: auto; display: inline-flex; align-items: center; justify-content: center; min-width: 32px; min-height: 32px; color: var(--muted); }
+.signal-record h4 { font-size: 15px; line-height: 1.5; font-weight: 650; color: var(--foreground); margin: 8px 0; overflow-wrap: anywhere; }
+.signal-mark { padding: 4px 9px; border-radius: 6px; font-size: 10px; font-weight: 700; color: var(--secondary); background: var(--surface-soft); }
+.signal-mark.positive { color: var(--positive); background: color-mix(in srgb, var(--positive) 11%, var(--surface)); }
+.signal-mark.negative { color: var(--negative); background: color-mix(in srgb, var(--negative) 11%, var(--surface)); }
+.signal-mark.feature { color: var(--teal); background: var(--accent-soft); }
+.signal-record-note { color: var(--secondary); font-size: 11px; line-height: 1.7; white-space: pre-wrap; overflow-wrap: anywhere; }
+.signal-value { color: var(--secondary); font-size: 11px; overflow-wrap: anywhere; }
+.signal-value strong { margin: 0 8px; color: var(--foreground); font-size: 17px; font-variant-numeric: tabular-nums; }
+.signal-value span { font-size: 10px; color: var(--muted); }
+.signal-record-meta { display: flex; flex-wrap: wrap; gap: 6px 14px; color: var(--muted); font-size: 10px; margin-top: 14px; line-height: 1.5; }
+.signal-record-meta a { color: var(--teal); }
+.signal-empty { padding: 36px 22px; color: var(--muted); line-height: 1.7; font-size: 12px; }
+.signal-alert, .signal-notice { margin: 0; padding: 12px 16px; border-radius: 8px; font-size: 12px; }
+.signal-alert { background: color-mix(in srgb, var(--negative) 10%, var(--surface)); color: var(--negative); }
+.signal-notice { background: var(--accent-soft); color: var(--foreground); }
+@media (max-width: 960px) { .signal-layout { grid-template-columns: 1fr; } }
+@media (max-width: 640px) { .signal-heading { align-items: start; flex-direction: column; } .signal-heading-tools { width: 100%; } .signal-panel-title { flex-wrap: wrap; } .signal-search { width: 100%; } .signal-form-pair { grid-template-columns: 1fr; } }
